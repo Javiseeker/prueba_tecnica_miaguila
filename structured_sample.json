@@ -1,0 +1,63 @@
+{
+    "country": "Colombia",
+    "city": {
+        "name": "Bogotá",
+        "trips": {
+            "trip_information": {
+                "start": {
+                    "start_date": {
+                        "$date": "2019-01-25T19:06:27.936+0000"
+                    },
+                    "pickup_address": "Cl. 90 #19-41, Bogotá, Colombia",
+                    "pickup_location": {
+                        "type": "Point",
+                        "coordinates": [
+                            -74.0565192,
+                            4.6761959
+                        ]
+                    }
+                },
+                "end": {
+                    "end_date": null,
+                    "pickup_address": "Ac. 100 #13-21, Bogotá, Colombia",
+                    "pickup_location": {
+                        "location_type": "Point",
+                        "coordinates": [
+                            -74.0465655,
+                            4.6830892
+                        ]
+                    }
+                },
+                "price": 13800.0,
+                "passenger": {
+                    "first_name": "Ricardo",
+                    "last_name": "Sarmiento"
+                },
+                "driver": {
+                    "first_name": "Julio Alberto",
+                    "last_name": "Mesa Rodriguez",
+                    "car": {
+                        "plate": "ESM308"
+                    }
+                },
+                "check_code": "66",
+                "created_at": {
+                    "$date": "2019-01-25T19:03:53.251+0000"
+                },
+                "current_information": {
+                    "status": "started",
+                    "updated_at": {
+                        "$date": "2019-01-25T19:47:04.397+0000"
+                    },
+                    "driver_location": {
+                        "location_type": "Point",
+                        "coordinates": [
+                            -74.06017631292343,
+                            4.669553302335373
+                        ]
+                    }
+                }
+            }
+        }
+    }
+}

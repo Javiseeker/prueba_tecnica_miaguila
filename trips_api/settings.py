@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import mongoengine
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -37,6 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_mongoengine',
+    'django_mongoengine',
+    'django_mongoengine.mongo_auth',
+    'django_mongoengine.mongo_admin'
 ]
 
 MIDDLEWARE = [
@@ -75,10 +81,28 @@ WSGI_APPLICATION = 'trips_api.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+        'ENGINE': 'django.db.backends.dummy'
+    },
 }
+
+
+MONGO_USER = 'admin'
+
+MONGO_PASS = 'admin'
+
+MONGO_HOST = 'miaguilatechtestdb.ezhrw.mongodb.net'
+# MONGO_HOST = 'miaguilatechtestdb-shard-00-00.ezhrw.mongodb.net:27017,miaguilatechtestdb-shard-00-01.ezhrw.mongodb.net:27017,miaguilatechtestdb-shard-00-02.ezhrw.mongodb.net:27017/test?replicaSet=atlas-12xx2y-shard-0&ssl=true&authSource=admin'
+# MONGO_HOST = 'miaguilatechtestdb-shard-00-00.ezhrw.mongodb.net:27017'
+MONGO_EXTRA_DETAILS = '?retryWrites=true&w=majority'
+
+MONGO_NAME = 'mi%5Faguila%5Ftest%5Fdb' #+ MONGO_EXTRA_DETAILS
+
+MONGO_DATABASE_HOST = 'mongodb://{}:{}@{}/{}'.format(MONGO_USER, MONGO_PASS, MONGO_HOST, MONGO_NAME)
+
+print("Aqui la wea: {}".format(MONGO_DATABASE_HOST))
+print("aqui la 2nda wea: {}".format(MONGO_NAME))
+mongoengine.connect(MONGO_NAME, MONGO_DATABASE_HOST)
+
 
 
 # Password validation
@@ -118,3 +142,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+
+#   Django REST specifications
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
+}
